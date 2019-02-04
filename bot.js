@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
    
 client.on("message", (message) => {
-   if (message.content.startsWith("#new")) { 
+   if (message.content.startsWith("+new")) { 
         const reason = message.content.split(" ").slice(1).join(" ");     
         if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
@@ -34,7 +34,7 @@ client.on("message", (message) => {
     }
 
 
-  if (message.content.startsWith("#close")) {
+  if (message.content.startsWith("+close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
 
         message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`#confirm\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
